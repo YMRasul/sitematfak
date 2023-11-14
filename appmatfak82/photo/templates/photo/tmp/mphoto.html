@@ -1,0 +1,32 @@
+{% extends 'app1/base.html' %}
+{% block content %}
+  <h2>{{title}}</h2>
+  <ul class="list-articles">             <!-- ul.list-articles { list-style: none;  margin: 0;  padding: 0; } -->
+    {% for s in stdns %}
+      <li>
+        <div class="article-panel"> <!--div.article-panel { background: #eee; padding: 5px 10px 5px 10px;
+                                                        box-sizing border-box; overflow: hidden;  color: #555;} -->
+          <p class="first">{{s.cat}}</p>
+          <!--div.article-panel p.first { margin: 0; float: left; } -->
+          <p class="last">Дата размещения: {{s.time_update|date:"d-m-Y"}}</p>
+          <!-- div.article-panel p.last {  margin: 0;  float: right; } -->
+        </div>
+
+        {% if s.photo %}
+          <p><img class="img-article-left" src="{{s.photo.url}}"></p>
+          <!-- <p><img class="img-article-left thumb" src="{{s.photo.url}}" border=1></p> -->
+          <!--image, img, picture,
+              pic — картинка
+              icon — иконка
+              logo — логотип
+              userpic, avatar — юзерпик, маленькая картинка пользователя
+              thumbnail, thumb — миниатюра, уменьшенное изображение
+          -->
+        {% endif %}
+        <div class="clear"></div>
+
+        <h3>{{s.title}}</h3>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
